@@ -1,0 +1,188 @@
+<html>
+<head>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+   <script type="text/javascript"> 
+    var c,d;
+    </script>
+    
+  
+
+    <script type="text/javascript"> 
+
+        $(document).ready(function() {
+
+            //getUpdates();
+             $.getJSON('https://thingspeak.com/channels/230325/fields/2/last.json?callback=?', function(data) {
+            
+             c = data.field2.substring(0,5);
+           
+                    //window.alert(c);
+                    document.getElementById("addressinput").value = c;
+
+                     });
+
+             $.getJSON('https://thingspeak.com/channels/230325/fields/3/last.json?callback=?', function(data) {
+            
+             d = data.field3.substring(0,5);
+            
+                            document.getElementById("addressinput").value += " "+ d;
+
+                            var audio = new Audio('bhavesh.mp3');
+                            audio.play();       
+                            alert("loc="+document.getElementById("addressinput").value);        
+                        
+            
+            });  
+            //getNewjson();
+
+            // check for new updates
+           // setInterval('getUpdates()',150000);
+
+        });
+    
+    //function to load json file
+   // function getUpdates()
+   // {
+    
+           
+
+            //api.thingspeak.com/channels/12397/fields/4/last_data_age.json
+    
+   // }
+    
+    </script> 
+
+
+<script language="javascript" type="text/javascript">
+
+    var map;
+    var geocoder;
+    function InitializeMap() {
+
+        var latlng = new google.maps.LatLng(19.16,72.99);
+        var myOptions =
+        {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+    }
+
+    function FindLocaiton() {
+        geocoder = new google.maps.Geocoder();
+        InitializeMap();
+
+        var address = document.getElementById("addressinput").value;
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+
+            }
+            else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+
+    }
+
+
+    function Button1_onclick() {
+        FindLocaiton();
+
+    }
+
+    //window.onload = InitializeMap;
+
+</script>
+
+
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plolice Station Software - Home Page</title>
+    <meta name="description" content="Your Description Here">
+    <meta name="keywords" content="free boostrap, bootstrap template, freebies, free theme, free website, free portfolio theme, portfolio, personal, cv">
+    <meta name="author" content="Jenn, ThemeForces.com">
+    
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.2.0/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+
+    <!-- Slider
+    ================================================== -->
+    <link href="css/owl.carousel.css" rel="stylesheet" media="screen">
+    <link href="css/owl.theme.css" rel="stylesheet" media="screen">
+
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+ <div id="clients">
+        <div class="overlay">
+            <div class="container text-center">
+                <div class="section-title">
+                    <h2>Emergency Action to be taken at :</h2>
+                    <hr>
+                </div>
+
+               <table>
+<tr>
+<td>
+    <input id="addressinput" type="text" style="width: 447px" />   
+</td>
+<td>
+    <input id="Button1" type="button" value="Find" onclick="return Button1_onclick()" /></td>
+    <!-- <td>
+    <input id="Button2" type="button" value="Find Nearest Police Station" onclick="return Button2_onclick()" /></td>
+<td>
+    <input id="ptname" type="text" style="width: 447px" />   
+</td> -->
+</tr>
+<tr>
+<td colspan ="2">
+<div id ="map" style="height: 253px" >
+</div>
+</td>
+</tr>
+</table>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

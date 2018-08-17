@@ -1,0 +1,40 @@
+<html>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript"> 
+		$(document).ready(function() {
+
+		    
+			updateStatusAsRead();
+			//CaseInchargenName();
+
+		});
+		function updateStatusAsRead(){
+		// Get data from the server
+				$.getJSON('https://api.thingspeak.com/update.json?api_key=F6EBNSPJ00KBG0G5&field5=read&field6=XYZ', function(data) {
+				
+				var a = data.field5;
+				document.write("Status : " + a + "<br>");
+				
+				var b = data.field6;
+				//firstname = unescape(params["firstname"]);	
+				document.write("CASE INCHARGE OFFICER :  " + b + "<br");
+				
+				});
+				}
+				
+		/*function CaseInchargenName(){
+			$.getJSON('https://api.thingspeak.com/update.json?api_key=F6EBNSPJ00KBG0G5&field6=XYZ', function(data) {
+			
+				var b = data.field6;
+				document.write(b);
+			});
+		}*/
+						
+					
+</script>
+</head>
+<body >
+</body>
+</html>
+     

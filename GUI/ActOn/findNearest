@@ -1,0 +1,49 @@
+<html>
+<head>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+     
+    <script type="text/javascript"> 
+
+        $(document).ready(function() {
+
+            //getUpdates();
+             $.getJSON('https://thingspeak.com/channels/230325/fields/2/last.json?callback=?', function(data) {
+            
+            var c = data.field2.substring(0,5);
+           
+                    //window.alert(c);
+                    
+
+                     });
+
+             $.getJSON('https://thingspeak.com/channels/230325/fields/3/last.json?callback=?', function(data) {
+            
+            var d = data.field3.substring(0,5);
+            
+                            
+            
+            });  
+
+             document.write(c+d);
+            //getNewjson();
+
+            // check for new updates
+           // setInterval('getUpdates()',150000);
+
+        });
+    
+    //function to load json file
+   // function getUpdates()
+   // {
+    
+           
+
+            //api.thingspeak.com/channels/12397/fields/4/last_data_age.json
+    
+   // }
+    
+    </script> 
+</head>
+<body>
+</body> 
+</html>

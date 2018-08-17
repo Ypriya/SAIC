@@ -1,0 +1,27 @@
+<html>
+<head>
+
+<script language="javascript" type="text/javascript">
+
+$(document).ready(function() {
+
+		    InitializeMap();
+
+		    // check for new updates
+		    setInterval('InitializeMap()',120000);
+
+		});
+
+function InitializeMap() {
+
+		$.getJson('https://thingspeak.com/channels/248640/feed/last.json', function(data) {
+		
+		var a = data.created_at;
+		alert(a
+		});
+}
+</script>
+</head>
+<body onload="InitializeMap()">
+</body>
+</html>

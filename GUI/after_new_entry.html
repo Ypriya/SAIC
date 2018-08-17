@@ -1,0 +1,63 @@
+<html> 
+<head> 
+	
+	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script type="text/javascript"> 
+
+		$(document).ready(function() {
+
+		    getUpdates();
+			
+			//getNewjson();
+
+		    // check for new updates
+		    setInterval('getUpdates()',150000);
+
+		});
+
+	function getUpdates() {
+			
+			var date = new Date();
+			
+			var json = JSON.stringify(date);
+			
+			var json1 = json.substring(18,20);
+			
+			//int sec1 = json.getSeconds();
+			
+			//alert(json1);
+			
+			// get the data with a webservice call
+			$.getJSON('https://thingspeak.com/channels/230325/feed/last.json?callback=?', function(data) {
+			
+			var c = data.created_at;
+			
+			var json2 = c.substring(17,19);
+			
+			//var sec2 = json2.getSeconds();
+			var sec = json2 - json1 ;
+			
+			if (sec > 15 || sec > -15)
+			{
+						window.alert(" new entry");
+						
+						window.location.href = "https://thingspeak.com/channels/230325/feed.json";	
+
+						//window.location.href = "https://api.thingspeak.com/update.json?api_key=F6EBNSPJ00KBG0G5&status=read", "_blank";
+			}
+			else
+			{
+						window.alert("no new entry");
+			}
+			
+			});	
+			
+}
+
+</script> 
+</head> 
+<body>
+</body> 
+</html>
+
+

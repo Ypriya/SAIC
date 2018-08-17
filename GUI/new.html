@@ -1,0 +1,66 @@
+<html>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript"> 
+$(document).ready(function() {
+
+		    getUpdates();
+			getJsonByDeviId();
+
+		    // check for new updates
+		    setInterval('getUpdates()',120000);
+
+		});
+
+		function getUpdates() {
+
+				var result;
+
+				
+				 var myObject = "https://thingspeak.com/channels/230325/feed.json";
+				var count = Object.keys(myObject).length;
+				//alert(count);
+				for ( var i=0; i<count; i++)
+				{
+				if (a == 441 )
+				{
+				alert("rnyert"):
+				}
+				else
+				{
+				alert("nothing");
+				}
+				}
+			}	
+				
+				//alert("nothing");
+				//result = data;
+				//console.log(result);
+				
+				
+				// Loop through the data returned by the server to find the UUId of interest
+				/*for ( var i=0; i<result.feeds.length; i++ ) {
+					if (result.feeds[i].field8 == '441') {
+						var entry = result.feeds[i];
+							window.alert("abc");
+					}
+					else
+					{
+					alert("nothing");
+				}
+				}
+			});*/
+		
+		function String getJsonByDevId(){
+		// Get data from the server
+				$.getJSON('https://thingspeak.com/channels/242178/feed.json', function(data) {
+				
+				var a = data.field8;
+				return a;
+				});
+				}
+				
+/</script>
+<body >
+</body>
+</html>

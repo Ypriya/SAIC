@@ -1,0 +1,141 @@
+<html>
+<head>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+     
+    <script type="text/javascript"> 
+     var c,d;
+        $(document).ready(function() {
+
+            getUpdates();
+                         
+             //FindNearestPT();
+             
+
+             });
+
+    
+    //function to load json file
+    function getUpdates()
+    {
+//         var police_stations = [
+//   ["Ghatkopar Police Station", 19.0872159, 72.8999813, "V B Patil"],
+//   ["Wadala Police Station", 19.0152871, 72.8636858, "Parshuram karyakarte"],
+//   ["Dadar Police Station", 18.9223373, 72.8311512, "Shantilal Jadhav"],
+//   ["Vashi Police Station", 19.0723291, 72.9948619 "Ajaykumar Landage"]
+// ];
+    
+           $.getJSON('https://thingspeak.com/channels/230325/fields/2/last.json?callback=?', function(data) {
+            
+          c= data.field2.substring(0,5);
+           
+                    //window.alert(c);
+                  
+                     });
+
+             $.getJSON('https://thingspeak.com/channels/230325/fields/3/last.json?callback=?', function(data) {
+            
+         d = data.field3.substring(0,5);
+            
+                    window.alert(c+d);    
+                   //NearestCity(lati, longi);
+                   //nearestcity
+                //    var mindif = 99999;
+                // var closest;
+
+                // for (index = 0; index < police_stations.length; ++index) {
+                //     //pytha
+                //    var lat1 = c* Math.PI / 180;
+                //     var lat2 = d* Math.PI / 180;
+                //     var lon1 = police_stations[index][1]*Math.PI / 180;
+                //     var lon2 = police_stations[index][2]*Math.PI / 180;
+                //     var R = 6371; // km
+                //     var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+                //      var y = (lat2 - lat1);
+                //     var de = Math.sqrt(x * x + y * y) * R;
+                //     var diff=de;
+                // //var dif = PythagorasEquirectangular(latitude, longitude, police_stations[index][1], police_stations[index][2]);
+                // if (dif < mindif) {
+                //     closest = index;
+                //         mindif = dif;
+                //         }  
+                //         }   
+                //         window.alert(police_stations[closest]);
+            
+            });  
+
+   //           //FindNearestPT();
+            //api.thingspeak.com/channels/12397/fields/4/last_data_age.json
+    
+    
+   }
+
+    // function FindNearestPT()
+    // {
+    //     var lati,longi;
+    //     $.getJSON('https://thingspeak.com/channels/230325/fields/2/last.json?callback=?', function(data) {
+            
+    //       lati= data.field2.substring(0,5);
+    //        });
+    //      //lati=c;//document.getElementById("addressinput").value;
+    //     //lati=lati.substring(0,5);
+    //     //alert("loc="+document.getElementById("addressinput").value);
+    //     //document.getElementById("ptname").value ="latitude is"+lati;
+    //      $.getJSON('https://thingspeak.com/channels/230325/fields/3/last.json?callback=?', function(data) {
+            
+    //       longi = data.field3.substring(0,5);
+                                      
+            
+    //         });  
+         
+    //  }
+         
+         
+        //document.getElementById("addressinput").value;
+        //longi=longi.substring(6,11);
+//         window.alert("values are"+c+" "+ d);
+//     
+//     }
+//     // Convert Degress to Radians
+// function Deg2Rad(deg) {
+//   return deg * Math.PI / 180;
+// }
+// function PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
+//   lat1 = Deg2Rad(lat1);
+//   lat2 = Deg2Rad(lat2);
+//   lon1 = Deg2Rad(lon1);
+//   lon2 = Deg2Rad(lon2);
+//   var R = 6371; // km
+//   var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+//   var y = (lat2 - lat1);
+//   var de = Math.sqrt(x * x + y * y) * R;
+//   return de;
+// }
+
+// function NearestCity(latitude, longitude) {
+//     window.alert(latitude,longitude);
+//   var mindif = 99999;
+//   var closest;
+
+//   for (index = 0; index < police_stations.length; ++index) {
+//     var dif = PythagorasEquirectangular(latitude, longitude, police_stations[index][1], police_stations[index][2]);
+//     if (dif < mindif) {
+//       closest = index;
+//       mindif = dif;
+//     }
+//   }
+
+//   // echo the nearest city
+//   document.write(police_stations[closest]);
+// }
+
+// function Button2_onclick() {
+//         FindNearestPT();
+
+//     }
+
+    
+    </script> 
+</head>
+<body>
+</body> 
+</html>
